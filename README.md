@@ -19,11 +19,13 @@
 `https://text-adv-game.herokuapp.com/api/login/`
 #### Response 
 ##### "email" is not require 
+```
 {
     "username": "",
     "email": "",
     "password": ""
 }
+```
 
 ### Rooms: GET
 `https://text-adv-game.herokuapp.com/api/adv/rooms`
