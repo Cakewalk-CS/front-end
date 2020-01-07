@@ -2,18 +2,19 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Styled from "styled-components";
-import "./Login.css";
 
 const Signup = props => {
   //state
-  const [newUser, setNewUser] = useState({ username: "", password: "" });
+  const [newUser, setNewUser] = useState({ username: "", password1: "", password2:"" });
 
-  const submitInfo = (event, creds) => {
+  const submitInfo = (event) => {
     event.preventDefault();
 
-    axios.post("https://bw-vacation-planner.herokuapp.com/api/auth/register", creds)
+    axios.post("https://text-adv-game.herokuapp.com/api/registration/", newUser)
         .then(res => {
-            props.history.push("/");
+            console.log(res)
+            localStorage.setItem("token", res.data.key);
+            // props.history.push("/");
         })
         .catch(err => console.log(err));
       }
@@ -37,15 +38,22 @@ const Signup = props => {
         />
         <Label>password</Label>
         <StyledInput
-          type="text"
-          value={newUser.password}
-          name="password"
+          type="password"
+          value={newUser.password1}
+          name="password1"
+          onChange={handleNewUser}
+        />
+        <Label>retype password</Label>
+        <StyledInput
+          type="password"
+          value={newUser.password2}
+          name="password2"
           onChange={handleNewUser}
         />
         <StyledButton>Join the club!</StyledButton>
         <StyledParagraph>
-          Already part of the Vacation-Planner community?{" "}
-          <Link to="/">Log in</Link>
+          Already part of CakeWalk Player community?{" "}
+          <Link to="/login">Log in</Link>
         </StyledParagraph>
       </StyledForm>
     </div>
