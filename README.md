@@ -18,7 +18,7 @@
 ### Login: POST
 `https://text-adv-game.herokuapp.com/api/login/`
 #### Response 
-"email" is not require 
+##### "email" is not require 
 {
     "username": "",
     "email": "",
