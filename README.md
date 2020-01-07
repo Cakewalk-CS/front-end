@@ -4,7 +4,7 @@
 
 ### Register: POST
 `https://text-adv-game.herokuapp.com/api/registration/`
-Response
+#### Response
 ```
 {
     "username": "",
@@ -17,7 +17,7 @@ Response
 
 ### Login: POST
 `https://text-adv-game.herokuapp.com/api/login/`
-Response 
+#### Response 
 "email" is not require 
 {
     "username": "",
@@ -27,7 +27,7 @@ Response
 
 ### Rooms: GET
 `https://text-adv-game.herokuapp.com/api/adv/rooms`
-Response
+#### Response
 ```
 {"rooms": [{
     "id": 1, 
@@ -46,7 +46,7 @@ Response
  
  ### Initialize: GET
  `https://text-adv-game.herokuapp.com/api/adv/init`
- Response
+ #### Response
  ```
  {"uuid": "cc56b9e5-4f90-4892-969c-acf164d6f193", 
   "name": "test123", "title": "Outside Cave Entrance", 
