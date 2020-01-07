@@ -28,8 +28,6 @@
 ```
 ### Logout: POST
 `https://text-adv-game.herokuapp.com/api/logout/`
-#### Response 
-
 
 ### Rooms: GET
 `https://text-adv-game.herokuapp.com/api/adv/rooms`
