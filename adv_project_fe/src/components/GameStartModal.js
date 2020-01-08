@@ -5,7 +5,7 @@ import 'semantic-ui-css/semantic.min.css'
 
 const ModalBasicExample = (props) => (
   <Modal open= {props.success} basic size='small'>
-    <Header icon='archive' content='Archive Old Messages' />
+    <Header icon='game' content='Explore more rooms!' />
     <Modal.Content>
       <p>
         Wanna play?
