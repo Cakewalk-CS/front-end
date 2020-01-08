@@ -1,12 +1,13 @@
 import React, {useState} from "react";
-import { Link, Route } from 'react-router-dom';
 import axios from 'axios'
+import Modal from './GameStartModal'
 
 const Login = props => {
   const [user, setUser] = useState({
-      email: '',
-      password: ''
+      "username": '',
+      "password": ''
   })
+  const [success, setSuccess] = useState(false)
 
   const handleChange = e => {
     setUser({
@@ -17,40 +18,45 @@ const Login = props => {
 
     const login = (e) => {
         e.preventDefault()
-        axios.post("?", user)
+        axios.post("https://text-adv-game.herokuapp.com/api/login/", user)
             .then(res => {
-                props.history.push("/?");
-                localStorage.setItem("token", res.data.token);
+                localStorage.setItem("token", res.data.key);
+                if(res.status === 200){
+                    setSuccess(true)
+                }
             })
             .catch(err => console.log(err));
     }
     
   return (
-    <div className = 'loginFormDiv'>
+    <>
+    <Modal success={success} setSuccess={setSuccess}/>
+        <div className = 'loginFormDiv'>
         <form className='loginForm' onSubmit={login}>
-          <label>
-            Email
+        <label>
+            Username
             <input
-              type="email"
-              name="email"
-              value={user.email}
-              onChange={handleChange}
+            type="text"
+            name="username"
+            value={user.username}
+            onChange={handleChange}
             />
-          </label>  
-          <label>
+        </label>  
+        <label>
             Password
             <input
-              type="password"
-              name="password"
-              value={user.password}
-              onChange={handleChange}
+            type="password"
+            name="password"
+            value={user.password}
+            onChange={handleChange}
             />
-          </label>
-          <a>Forgot your password?</a>
-          <button className='loginButton' type='submit'>Sign in</button>
+        </label>
+        <a>Forgot your password?</a>
+        <button className='loginButton' type='submit'>Sign in</button>
         </form>
         <div className='loginLine'></div>
     </div>
+    </>
   );
 };
 
