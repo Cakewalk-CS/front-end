@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Styled from "styled-components";
-
+import Move from './move'
+import Init from './Init'
 import axiosWithAuth from './axiosWithAuth';
 
 import './room.css'
@@ -32,23 +33,35 @@ let areas = ''
 function Rooms() {
     const [rooms, setRooms] = useState([])
     const [finishedGrid, setFinishedGrid] = useState([])
-    const [direction, setDirection] = useState({ direction: '' })
+
+
     useEffect(() => {
         axiosWithAuth().get("https://text-adv-game.herokuapp.com/api/adv/rooms")
             .then(res => {
-                let rooms = res.data.rooms
-                let sorted_rooms = rooms.sort((a, b) => { return a.id - b.id })
-                let new_arr = []
+                let rooms = res.data.rooms;
+                let sorted_rooms = rooms.sort((a, b) => { return a.id - b.id });
+                let zigZagSortedRooms;
+
 
                 function zigZagSort() {
-                    let oneThroughTen = sorted_rooms.slice(0, 10)
-                    let elevenThroughTwenty = sorted_rooms.slice(11, 20).reverse();
+                    let a = sorted_rooms.slice(0, 10);
+                    let b = sorted_rooms.slice(10, 20).reverse();
+                    let c = sorted_rooms.slice(20, 30);
+                    let d = sorted_rooms.slice(30, 40).reverse();
+                    let e = sorted_rooms.slice(40, 50);
+                    let f = sorted_rooms.slice(50, 60).reverse();
+                    let g = sorted_rooms.slice(60, 70);
+                    let h = sorted_rooms.slice(70, 80).reverse();
+                    let i = sorted_rooms.slice(80, 90);
+                    let j = sorted_rooms.slice(90, 100).reverse();
+
+                    zigZagSortedRooms = a.concat(b, c, d, e, f, g, h, i, j);
 
 
-                    return oneThroughTen;
+                    return zigZagSortedRooms;
                 }
 
-                console.log('First ten:', zigZagSort());
+                console.log('All:', zigZagSort());
 
                 /* 
                 1  2  3  4  5  6  7  8  9  10
@@ -56,7 +69,7 @@ function Rooms() {
                 21 22 23 24 25 26 27 28 29 30
                 40 39 38 37 36 35 34 33 32 31 
                 */
-                setRooms(sorted_rooms)
+                setRooms(zigZagSortedRooms)
                 // exploreRoom(res.data.rooms[0].id, [0, 0], res.data.rooms).then(res => {
                 //     // console.log(grid)
                 //     setFinishedGrid(grid)
@@ -128,39 +141,22 @@ function Rooms() {
     finishedGrid.forEach(row => {
         areas = areas + row.join(' ') + '\n'
     })
-    const handleChange = e => {
-        e.preventDefault()
-        if (e.target.value)
-            setDirection({
-                ...direction,
-                [e.target.name]: e.target.value
-            })
-    }
-    const handleSubmit = e => {
-        e.preventDefault()
-        console.log(direction)
-        // axiosWithAuth().post("https://text-adv-game.herokuapp.com/api/adv/move", direction)
-    }
+
     return (
         <>
             <h1>ROOMS</h1>
             <div className='container'>
                 <div className='game'>
                     {rooms.map(room => {
-                        return <div className='box'> {room.id} </div>
+                        return <div className='box' key={room.id}> {room.id} </div>
                     })}
                 </div>
                 <div className='right-side'>
-                    <div className='description'>Description</div>
+                    {/* <div className='description'>Description</div> */}
+                    <Init />
                     <div className='input'>
-                        <input
-                            name='direction'
-                            type='text'
-                            placeholder='Make your move here'
-                            value={direction.direction}
-                            onChange={handleChange}
-                        />
-                        <button onClick={handleSubmit}>Submit your move</button>
+
+                        <Move />
                     </div>
                 </div>
             </div>
