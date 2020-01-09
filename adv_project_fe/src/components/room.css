@@ -1,3 +1,6 @@
+*:focus {
+    outline: none;
+  }
 .container{
     border: 1px solid black;
     width: 100%;
