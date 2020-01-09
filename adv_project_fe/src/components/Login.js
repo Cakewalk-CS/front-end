@@ -34,12 +34,6 @@ font-weight:bold;
 margin-bottom: 40px;
 `
 
-// const LoginForm = styled.div `
-// display: flex;
-
-// text-align: center;
-// `
-
 const Form = styled.form `
 margin-top: 100px;
 margin-bottom: 100px;
