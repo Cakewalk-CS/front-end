@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Header, Icon, Modal } from 'semantic-ui-react'
-import 'semantic-ui-css/semantic.min.css'
+// import 'semantic-ui-css/semantic.min.css'
 
 const ModalBasicExample = (props) => (
   <Modal open= {props.success} basic size='small'>
