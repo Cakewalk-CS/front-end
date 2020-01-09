@@ -61,7 +61,7 @@ function Rooms() {
                     return zigZagSortedRooms;
                 }
 
-                console.log('All:', zigZagSort());
+                zigZagSort();
 
                 /* 
                 1  2  3  4  5  6  7  8  9  10
@@ -148,7 +148,7 @@ function Rooms() {
             <div className='container'>
                 <div className='game'>
                     {rooms.map(room => {
-                        return <div className='box' key={room.id}> {room.id} </div>
+                        return <div className={`box box-${room.id}`} key={room.id}> {room.id} </div>
                     })}
                 </div>
                 <div className='right-side'>

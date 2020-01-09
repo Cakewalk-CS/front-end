@@ -6,11 +6,12 @@ import axiosWithAuth from './axiosWithAuth';
 import './room.css'
 
 const Move = () => {
-    const [direction, setDirection] = useState({ direction: '' })
+    const [direction, setDirection] = useState({ "direction": 'e' })
 
     const handleChangeN = e => {
         e.preventDefault()
         const n = e.target.value == "n"
+        console.log(n)
         if (e.target.value)
             setDirection({
                 ...direction,
@@ -18,18 +19,19 @@ const Move = () => {
             })
     }
     const handleSubmit = e => {
-        e.preventDefault()
-        setDirection({ ...direction, direction: e.target.value })
-        console.log(e.target.value);
-        // axiosWithAuth().post("https://text-adv-game.herokuapp.com/api/adv/move", direction);
+        setDirection({ ...direction, "direction": e.target.value })
+        console.log(direction);
+        axiosWithAuth().post("https://text-adv-game.herokuapp.com/api/adv/move", direction).then(res => {
+            console.log(res);
+        });
     }
 
 
     return (
         <div>
 
-            <button value="n" onClick={handleSubmit}>N</button>
-            <button>E</button>
+            <button value={direction.direction} onClick={handleSubmit}>N</button>
+            <button value={direction.direction} onClick={handleSubmit}>E</button>
             <button>S</button>
             <button>W</button>
         </div >
