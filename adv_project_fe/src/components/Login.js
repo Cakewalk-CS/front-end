@@ -7,25 +7,39 @@ import title from "../SVG/title.svg"
 
 const ParentDiv = styled.div `
 display: flex;
+justify-content: center;
 text-align: center;
+<<<<<<< HEAD
+flex-grow: 1;
+
+=======
+>>>>>>> 170322d2b1c188a9d1c47cf12d727ff5a152a893
 `
 
 const LoginFormDiv = styled.div `
 display: flex;
 background-color: #f26419;
+
 width: 50% ;
+flex-grow: 1;
 justify-content: center;
+flex-direction: column;
+color: white;
+font-family: 'Exo 2', sans-serif;
+
+`
+const WBSpan = styled.span`
+font-size: 40px;
+font-weight:bold;
+margin-bottom: 40px;
 `
 
-// const LoginForm = styled.div `
-// display: flex;
-
-// text-align: center;
-// `
-
 const Form = styled.form `
-margin-top: 200px;
-
+margin-top: 100px;
+margin-bottom: 100px;
+width: 60%;
+margin: 0 auto;
+position: relative;
 `;
 
 
@@ -33,8 +47,13 @@ const UsrLabel = styled.label `
 font-family: 'Exo 2', sans-serif;
 font-weight:bold;
 font-size:20px;
+color: white;
 
 `
+const PwLDiv = styled.div `
+margin-top: 25px;
+`
+
 const PwLabel = styled.label `
 font-family: 'Exo 2', sans-serif;
 font-weight:bold;
@@ -43,6 +62,9 @@ font-size:20px;
 
 const Input =styled.input `
 font-size: 20px;
+
+margin: 6px;
+border: none;
 `
 const LButton = styled.button `
 border-radius: 20px;
@@ -64,9 +86,11 @@ height:40px;
 const LogoDiv = styled.div `
 background-color: #55dde0;
 width: 50% ;
-height: 720px;
+flex-grow: 1;
 `
-
+const ForgotDiv = styled.span `
+font-style: italic;
+`
 
 const Login = props => {
   const [user, setUser] = useState({
@@ -102,6 +126,7 @@ const Login = props => {
     </LogoDiv>
     <Modal success={success} setSuccess={setSuccess}/>
         <LoginFormDiv>
+        <WBSpan>WELCOME BACK!</WBSpan>
           {/* <LoginForm> */}
           <Form onSubmit={login}>
             <UsrLabel>
@@ -114,17 +139,21 @@ const Login = props => {
                 onChange={handleChange}
                 />
             </UsrLabel>  
-            <PwLabel>
-                PASSWORD
-                <Input
-                style={{top: "554px", left: "16px", width: "100%", height: "40px", borderRadius: "20px", borderColor: "#f26419"}}
-                type="password"
-                name="password"
-                value={user.password}
-                onChange={handleChange}
-                />
-            </PwLabel>
-            <div style={{font: 'Exo 2', fontSize: "20px"}}>Forgot your password?</div>
+
+            <PwLDiv>
+              <PwLabel>
+                  PASSWORD
+                  <Input
+                  style={{top: "554px", left: "16px", width: "100%", height: "40px", borderRadius: "20px", borderColor: "#f26419"}}
+                  type="password"
+                  name="password"
+                  value={user.password}
+                  onChange={handleChange}
+                  />
+              </PwLabel>
+            </PwLDiv>
+
+            <ForgotDiv>Forgot your password?</ForgotDiv>
             <LButton className='loginButton' type='submit'>SIGN IN</LButton>
           </Form>
           {/* </LoginForm> */}
@@ -135,3 +164,4 @@ const Login = props => {
 };
 
 export default Login;
+
