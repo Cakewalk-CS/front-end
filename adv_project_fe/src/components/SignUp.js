@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import ori from "../SVG/ori.svg"
-import title from "../SVG/title.svg"
+import signuptitle from "../SVG/signuptitle.svg"
 
 const Signup = props => {
   //state
@@ -30,34 +30,43 @@ const Signup = props => {
   return (
     <ParentDiv>
       <LogoDiv>
-        <H3>ORI'S GALAX QUEST</H3>
+        <img style={{marginTop:"30px", marginRight:"15px"}} src={signuptitle} alt="signuptitle" />
         <Img style={{maxWidth:"50%"}} src={ori} alt="Ori" />
       </LogoDiv>
       <SignUpDiv>
         <Form onSubmit={e => submitInfo(e, newUser)}>
-          <h3>Sign up!</h3>
-          <UsrLabel>username</UsrLabel>
+          <WBSpan>SIGN UP!</WBSpan>
+          <PwLDiv>
+          <PwLabel>USERNAME</PwLabel>
           <Input
+            style={{top: "554px", left: "16px", width: "100%", height: "40px", borderRadius: "20px", borderColor: "#f26419"}}
             type="text"
             value={newUser.username}
             name="username"
             onChange={handleNewUser}
           />
-          <PwLabel>password</PwLabel>
+          </PwLDiv>
+          <PwLDiv>
+          <PwLabel>PASSWORD</PwLabel>
           <Input
+            style={{top: "554px", left: "16px", width: "100%", height: "40px", borderRadius: "20px", borderColor: "#f26419"}}
             type="password"
             value={newUser.password1}
             name="password1"
             onChange={handleNewUser}
           />
-          <PwLabel>retype password</PwLabel>
+          </PwLDiv>
+          <PwLDiv>
+          <PwLabel>RETYPE PASSWORD</PwLabel>
           <Input
+            style={{top: "554px", left: "16px", width: "100%", height: "40px", borderRadius: "20px", borderColor: "#f26419"}}
             type="password"
             value={newUser.password2}
             name="password2"
             onChange={handleNewUser}
           />
-          <LButton>Join the club!</LButton>
+          <LButton>JOIN THE CLUB!</LButton>
+          </PwLDiv>
           <p>
             Already part of CakeWalk Player community?{" "}
             <Link to="/login">Log in</Link>
@@ -95,23 +104,38 @@ margin-top: 200px;
 const SignUpDiv = styled.div `
 display: flex;
 background-color: #f26419;
-width: 50% ;
-justify-content: center;
-`
 
-const Form = styled.form `
-margin-top: 200px;
+width: 50% ;
+flex-grow: 1;
+justify-content: center;
 flex-direction: column;
-flex-wrap: wrap;
-display: flex;
+color: white;
+font-family: 'Exo 2', sans-serif;
+`
+const WBSpan = styled.span`
+font-size: 40px;
+font-weight:bold;
+margin-bottom: 40px;
+`
+const Form = styled.form `
+margin-top: 100px;
+margin-bottom: 100px;
+width: 60%;
+margin: 0 auto;
+position: relative;
 `
 
 const UsrLabel = styled.label `
 font-family: 'Exo 2', sans-serif;
 font-weight:bold;
 font-size:20px;
+color: white;
 
 `
+const PwLDiv = styled.div `
+margin-top: 25px;
+`
+
 const PwLabel = styled.label `
 font-family: 'Exo 2', sans-serif;
 font-weight:bold;
@@ -120,6 +144,9 @@ font-size:20px;
 
 const Input =styled.input `
 font-size: 20px;
+
+margin: 6px;
+border: none;
 `
 const LButton = styled.button `
 border-radius: 20px;
