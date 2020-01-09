@@ -9,6 +9,7 @@ const ParentDiv = styled.div `
 display: flex;
 justify-content: center;
 text-align: center;
+height: 100vh;
 `
 
 const LoginFormDiv = styled.div `
