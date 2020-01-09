@@ -8,7 +8,6 @@ import title from "../SVG/title.svg"
 const ParentDiv = styled.div `
 display: flex;
 text-align: center;
-
 `
 
 const LoginFormDiv = styled.div `
@@ -16,7 +15,6 @@ display: flex;
 background-color: #f26419;
 width: 50% ;
 justify-content: center;
-
 `
 
 // const LoginForm = styled.div `
@@ -99,8 +97,8 @@ const Login = props => {
   return (
   <ParentDiv>
     <LogoDiv>
-    <img style={{marginTop:"30px", marginRight:"15px"}} src={title} alt="title" />;
-    <img style={{width:"90%"}} src={ori} alt="Ori" />;
+    <img style={{marginTop:"30px", marginRight:"15px"}} src={title} alt="title" />
+    <img style={{width:"90%"}} src={ori} alt="Ori" />
     </LogoDiv>
     <Modal success={success} setSuccess={setSuccess}/>
         <LoginFormDiv>
