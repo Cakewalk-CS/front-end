@@ -5,6 +5,7 @@ import axiosWithAuth from './axiosWithAuth';
 
 import './room.css'
 
+
 const Init = (props) => {
     console.log('init', props.moveData)
     return (
