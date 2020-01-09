@@ -7,23 +7,34 @@ import title from "../SVG/title.svg"
 
 const Signup = props => {
   //state
-  const [newUser, setNewUser] = useState({ username: "", password1: "", password2:"" });
+  const [newUser, setNewUser] = useState({ username: "", password1: "", password2: "" });
+  const [error, setError] = useState({
+    passwordLength: false,
+    passwordMatch: false
+  })
 
   const submitInfo = (event) => {
     event.preventDefault();
-
+    if (newUser.password1.length < 8 || newUser.password2.length < 8) {
+      setError({ ...error, passwordMatch: false, passwordLength: true })
+      return
+    }
+    if (newUser.password1 !== newUser.password2) {
+      setError({ ...error, passwordLength: false, passwordMatch: true })
+      return;
+    }
     axios.post("https://text-adv-game.herokuapp.com/api/registration/", newUser)
-        .then(res => {
-            console.log(res)
-            localStorage.setItem("token", res.data.key);
-            // props.history.push("/");
-        })
-        .catch(err => console.log(err));
-      }
+      .then(res => {
+        localStorage.setItem("token", res.data.key);
+        setError({ ...error, passwordLength: false, passwordMatch: false })
+        props.history.push("/rooms");
+      })
+      .catch(err => console.log(err));
+  }
 
 
   const handleNewUser = e => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     setNewUser({ ...newUser, [name]: value });
   };
 
@@ -31,7 +42,7 @@ const Signup = props => {
     <ParentDiv>
       <LogoDiv>
         <H3>ORI'S GALAX QUEST</H3>
-        <Img style={{maxWidth:"50%"}} src={ori} alt="Ori" />
+        <Img style={{ maxWidth: "50%" }} src={ori} alt="Ori" />
       </LogoDiv>
       <SignUpDiv>
         <Form onSubmit={e => submitInfo(e, newUser)}>
@@ -43,6 +54,8 @@ const Signup = props => {
             name="username"
             onChange={handleNewUser}
           />
+          {error.passwordLength ? <p>Password should be at least 8 character long</p> : null}
+          {error.passwordMatch ? <p>Passwords should match!</p> : null}
           <PwLabel>password</PwLabel>
           <Input
             type="password"
@@ -73,12 +86,12 @@ export default Signup;
 
 //styles
 
-const ParentDiv = styled.div `
+const ParentDiv = styled.div`
 display: flex;
 text-align: center;
 `
 
-const LogoDiv = styled.div `
+const LogoDiv = styled.div`
 background-color: #55dde0;
 width: 50% ;
 height: 100vh;
@@ -86,42 +99,42 @@ display:flex;
 flex-direction: column;
 align-items: center;
 `
-const Img = styled.img `
+const Img = styled.img`
 
 `
-const H3 = styled.h3 `
+const H3 = styled.h3`
 margin-top: 200px;
 `
-const SignUpDiv = styled.div `
+const SignUpDiv = styled.div`
 display: flex;
 background-color: #f26419;
 width: 50% ;
 justify-content: center;
 `
 
-const Form = styled.form `
+const Form = styled.form`
 margin-top: 200px;
 flex-direction: column;
 flex-wrap: wrap;
 display: flex;
 `
 
-const UsrLabel = styled.label `
+const UsrLabel = styled.label`
 font-family: 'Exo 2', sans-serif;
 font-weight:bold;
 font-size:20px;
 
 `
-const PwLabel = styled.label `
+const PwLabel = styled.label`
 font-family: 'Exo 2', sans-serif;
 font-weight:bold;
 font-size:20px;
 `
 
-const Input =styled.input `
+const Input = styled.input`
 font-size: 20px;
 `
-const LButton = styled.button `
+const LButton = styled.button`
 border-radius: 20px;
 border-color: transparent;
 background-color: #efb22d;

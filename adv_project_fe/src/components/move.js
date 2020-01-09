@@ -9,16 +9,29 @@ import './room.css'
 const Move = (props) => {
     const [direction, setDirection] = useState('')
 
-    const handleChangeN = e => {
-        e.preventDefault()
-        const n = e.target.value == "n"
-        console.log(n)
-        if (e.target.value)
-            setDirection({
-                ...direction,
-                [e.target.name]: e.target.value
-            })
-    }
+    // document.addEventListener('keypress', function (event) {
+    //     const key = event.key; // "a", "1", "Shift", etc.
+    //     console.log(key)
+    //     // if (key === 'ArrowUp') {
+    //     //     setDirection('n');
+    //     // }
+    //     // if (key === 'ArrowDown') {
+    //     //     setDirection('s');
+    //     // }
+    //     // if (key === 'ArrowRight') {
+    //     //     setDirection('e');
+    //     // }
+    //     // if (key === 'ArrowLeft') {
+    //     //     setDirection('w');
+    //     // }
+    //     // axiosWithAuth().post("https://text-adv-game.herokuapp.com/api/adv/move", { "direction": direction }).then(res => {
+    //     //     console.log(res.data);
+    //     //     props.setMoveData(res.data);
+    //     // }).catch(err => {
+    //     //     console.log(err);
+    //     // });
+
+    // });
 
     const handleSubmit = e => {
         setDirection(e.target.value);
@@ -33,10 +46,10 @@ const Move = (props) => {
 
     return (
         <div>
-            <button value="n" onClick={handleSubmit}>N</button>
-            <button value="e" onClick={handleSubmit}>E</button>
-            <button value="s" onClick={handleSubmit}>S</button>
-            <button value="w" onClick={handleSubmit}>W</button>
+            <button value="n" onClick={handleSubmit}>&#8679;</button>
+            <button value="s" onClick={handleSubmit}>&#8681;</button>
+            <button value="w" onClick={handleSubmit}>&#8678;</button>
+            <button value="e" onClick={handleSubmit}>&#8680;</button>
         </div >
     );
 }
