@@ -4,32 +4,27 @@ import Modal from './GameStartModal'
 import styled from 'styled-components'
 import ori from "../SVG/ori.svg"
 import title from "../SVG/title.svg"
-
 const ParentDiv = styled.div `
 display: flex;
 justify-content: center;
 text-align: center;
 height: 100vh;
 `
-
 const LoginFormDiv = styled.div `
 display: flex;
 background-color: #f26419;
-
 width: 50% ;
 flex-grow: 1;
 justify-content: center;
 flex-direction: column;
 color: white;
 font-family: 'Exo 2', sans-serif;
-
 `
 const WBSpan = styled.span`
 font-size: 40px;
 font-weight:bold;
 margin-bottom: 40px;
 `
-
 const Form = styled.form `
 margin-top: 100px;
 margin-bottom: 100px;
@@ -37,28 +32,22 @@ width: 60%;
 margin: 0 auto;
 position: relative;
 `;
-
-
 const UsrLabel = styled.label `
 font-family: 'Exo 2', sans-serif;
 font-weight:bold;
 font-size:20px;
 color: white;
-
 `
 const PwLDiv = styled.div `
 margin-top: 25px;
 `
-
 const PwLabel = styled.label `
 font-family: 'Exo 2', sans-serif;
 font-weight:bold;
 font-size:20px;
 `
-
 const Input =styled.input `
 font-size: 20px;
-
 margin: 6px;
 border: none;
 `
@@ -78,7 +67,6 @@ height:40px;
   background: #33658a;
 }
 `
-
 const LogoDiv = styled.div `
 background-color: #55dde0;
 width: 50% ;
@@ -87,21 +75,18 @@ flex-grow: 1;
 const ForgotDiv = styled.span `
 font-style: italic;
 `
-
 const Login = props => {
   const [user, setUser] = useState({
       "username": '',
       "password": ''
   })
   const [success, setSuccess] = useState(false)
-
   const handleChange = e => {
     setUser({
       ...user,
         [e.target.name]: e.target.value
     });
   };
-
     const login = (e) => {
         e.preventDefault()
         axios.post("https://text-adv-game.herokuapp.com/api/login/", user)
@@ -113,7 +98,6 @@ const Login = props => {
             })
             .catch(err => console.log(err));
     }
-    
   return (
   <ParentDiv>
     <LogoDiv>
@@ -135,7 +119,6 @@ const Login = props => {
                 onChange={handleChange}
                 />
             </UsrLabel>  
-
             <PwLDiv>
               <PwLabel>
                   PASSWORD
@@ -148,7 +131,6 @@ const Login = props => {
                   />
               </PwLabel>
             </PwLDiv>
-
             <ForgotDiv>Forgot your password?</ForgotDiv>
             <LButton className='loginButton' type='submit'>SIGN IN</LButton>
           </Form>
@@ -158,6 +140,4 @@ const Login = props => {
   </ParentDiv>
   );
 };
-
 export default Login;
-

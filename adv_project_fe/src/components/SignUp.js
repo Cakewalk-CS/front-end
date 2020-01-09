@@ -7,23 +7,34 @@ import signuptitle from "../SVG/signuptitle.svg"
 
 const Signup = props => {
   //state
-  const [newUser, setNewUser] = useState({ username: "", password1: "", password2:"" });
+  const [newUser, setNewUser] = useState({ username: "", password1: "", password2: "" });
+  const [error, setError] = useState({
+    passwordLength: false,
+    passwordMatch: false
+  })
 
   const submitInfo = (event) => {
     event.preventDefault();
-
+    if (newUser.password1.length < 8 || newUser.password2.length < 8) {
+      setError({ ...error, passwordMatch: false, passwordLength: true })
+      return
+    }
+    if (newUser.password1 !== newUser.password2) {
+      setError({ ...error, passwordLength: false, passwordMatch: true })
+      return;
+    }
     axios.post("https://text-adv-game.herokuapp.com/api/registration/", newUser)
-        .then(res => {
-            console.log(res)
-            localStorage.setItem("token", res.data.key);
-            // props.history.push("/");
-        })
-        .catch(err => console.log(err));
-      }
+      .then(res => {
+        localStorage.setItem("token", res.data.key);
+        setError({ ...error, passwordLength: false, passwordMatch: false })
+        props.history.push("/rooms");
+      })
+      .catch(err => console.log(err));
+  }
 
 
   const handleNewUser = e => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     setNewUser({ ...newUser, [name]: value });
   };
 
@@ -48,6 +59,8 @@ const Signup = props => {
           </PwLDiv>
           <PwLDiv>
           <PwLabel>PASSWORD</PwLabel>
+          {error.passwordLength ? <p>Password should be at least 8 character long</p> : null}
+          {error.passwordMatch ? <p>Passwords should match!</p> : null}
           <Input
             style={{top: "554px", left: "16px", width: "100%", height: "40px", borderRadius: "20px", borderColor: "#f26419"}}
             type="password"
@@ -82,12 +95,12 @@ export default Signup;
 
 //styles
 
-const ParentDiv = styled.div `
+const ParentDiv = styled.div`
 display: flex;
 text-align: center;
 `
 
-const LogoDiv = styled.div `
+const LogoDiv = styled.div`
 background-color: #55dde0;
 width: 50% ;
 height: 100vh;
@@ -95,13 +108,13 @@ display:flex;
 flex-direction: column;
 align-items: center;
 `
-const Img = styled.img `
+const Img = styled.img`
 
 `
-const H3 = styled.h3 `
+const H3 = styled.h3`
 margin-top: 200px;
 `
-const SignUpDiv = styled.div `
+const SignUpDiv = styled.div`
 display: flex;
 background-color: #f26419;
 
@@ -125,7 +138,7 @@ margin: 0 auto;
 position: relative;
 `
 
-const UsrLabel = styled.label `
+const UsrLabel = styled.label`
 font-family: 'Exo 2', sans-serif;
 font-weight:bold;
 font-size:20px;
@@ -142,13 +155,13 @@ font-weight:bold;
 font-size:20px;
 `
 
-const Input =styled.input `
+const Input = styled.input`
 font-size: 20px;
 
 margin: 6px;
 border: none;
 `
-const LButton = styled.button `
+const LButton = styled.button`
 border-radius: 20px;
 border-color: transparent;
 background-color: #efb22d;
