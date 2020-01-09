@@ -9,8 +9,11 @@ const ParentDiv = styled.div `
 display: flex;
 justify-content: center;
 text-align: center;
+<<<<<<< HEAD
 flex-grow: 1;
 
+=======
+>>>>>>> 170322d2b1c188a9d1c47cf12d727ff5a152a893
 `
 
 const LoginFormDiv = styled.div `
@@ -167,3 +170,4 @@ const Login = props => {
 };
 
 export default Login;
+
