@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Styled from "styled-components";
-import Move from './move';
-import Init from './Init';
+import Move from './Move'
+import Init from './Init'
 import axiosWithAuth from './axiosWithAuth';
 import axios from 'axios'
 
