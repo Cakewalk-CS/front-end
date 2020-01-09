@@ -5,8 +5,8 @@ import axiosWithAuth from './axiosWithAuth';
 
 import './room.css'
 
-const Move = () => {
-    const [direction, setDirection] = useState({ "direction": 'e' })
+const Move = (props) => {
+    const [direction, setDirection] = useState('')
 
     const handleChangeN = e => {
         e.preventDefault()
@@ -18,36 +18,27 @@ const Move = () => {
                 [e.target.name]: e.target.value
             })
     }
+
     const handleSubmit = e => {
-        setDirection({ ...direction, "direction": e.target.value })
-        console.log(direction);
-        axiosWithAuth().post("https://text-adv-game.herokuapp.com/api/adv/move", direction).then(res => {
-            console.log(res);
+        setDirection(e.target.value);
+        axiosWithAuth().post("https://text-adv-game.herokuapp.com/api/adv/move", { "direction": e.target.value }).then(res => {
+            console.log(res.data);
+            props.setMoveData(res.data);
+        }).catch(err => {
+            console.log(err);
         });
     }
 
 
     return (
         <div>
-
-            <button value={direction.direction} onClick={handleSubmit}>N</button>
-            <button value={direction.direction} onClick={handleSubmit}>E</button>
-            <button>S</button>
-            <button>W</button>
+            <button value="n" onClick={handleSubmit}>N</button>
+            <button value="e" onClick={handleSubmit}>E</button>
+            <button value="s" onClick={handleSubmit}>S</button>
+            <button value="w" onClick={handleSubmit}>W</button>
         </div >
-
-
-    )
+    );
 }
 
 export default Move;
-
-{/* <input
-                            name='direction'
-                            type='text'
-                            placeholder='Make your move here'
-                            value={direction.direction}
-                            onChange={handleChange}
-                        />
-                        <button onClick={handleSubmit}>Submit your move</button> */}
 

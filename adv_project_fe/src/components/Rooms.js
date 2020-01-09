@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Styled from "styled-components";
-import Move from './move'
+import Move from './Move'
 import Init from './Init'
 import axiosWithAuth from './axiosWithAuth';
+import axios from 'axios'
 
 import './room.css'
 // define a new console
@@ -31,51 +32,47 @@ import './room.css'
 // window.console = console;
 let areas = ''
 function Rooms() {
-    const [rooms, setRooms] = useState([])
-    const [finishedGrid, setFinishedGrid] = useState([])
+    const [rooms, setRooms] = useState([]);
+    const [finishedGrid, setFinishedGrid] = useState([]);
+    const [moveData, setMoveData] = useState({})
 
 
     useEffect(() => {
-        axiosWithAuth().get("https://text-adv-game.herokuapp.com/api/adv/rooms")
-            .then(res => {
-                let rooms = res.data.rooms;
-                let sorted_rooms = rooms.sort((a, b) => { return a.id - b.id });
-                let zigZagSortedRooms;
+        const requestOne = axiosWithAuth().get("https://text-adv-game.herokuapp.com/api/adv/rooms");
+        const requestTwo = axiosWithAuth().get("https://text-adv-game.herokuapp.com/api/adv/init");
+        axios.all([requestOne, requestTwo]).then(axios.spread((...responses) => {
+
+            let sorted_rooms = responses[0].data.rooms.sort((a, b) => { return a.id - b.id });
+            let zigZagSortedRooms;
+
+            function zigZagSort() {
+                let a = sorted_rooms.slice(0, 10);
+                let b = sorted_rooms.slice(10, 20).reverse();
+                let c = sorted_rooms.slice(20, 30);
+                let d = sorted_rooms.slice(30, 40).reverse();
+                let e = sorted_rooms.slice(40, 50);
+                let f = sorted_rooms.slice(50, 60).reverse();
+                let g = sorted_rooms.slice(60, 70);
+                let h = sorted_rooms.slice(70, 80).reverse();
+                let i = sorted_rooms.slice(80, 90);
+                let j = sorted_rooms.slice(90, 100).reverse();
+
+                zigZagSortedRooms = a.concat(b, c, d, e, f, g, h, i, j);
 
 
-                function zigZagSort() {
-                    let a = sorted_rooms.slice(0, 10);
-                    let b = sorted_rooms.slice(10, 20).reverse();
-                    let c = sorted_rooms.slice(20, 30);
-                    let d = sorted_rooms.slice(30, 40).reverse();
-                    let e = sorted_rooms.slice(40, 50);
-                    let f = sorted_rooms.slice(50, 60).reverse();
-                    let g = sorted_rooms.slice(60, 70);
-                    let h = sorted_rooms.slice(70, 80).reverse();
-                    let i = sorted_rooms.slice(80, 90);
-                    let j = sorted_rooms.slice(90, 100).reverse();
+                return zigZagSortedRooms;
+            }
 
-                    zigZagSortedRooms = a.concat(b, c, d, e, f, g, h, i, j);
+            zigZagSort();
 
+            setRooms(zigZagSortedRooms);
 
-                    return zigZagSortedRooms;
-                }
+            let currentRoom = responses[1].data;
+            setMoveData(currentRoom);
+        })).catch(errors => {
+            console.log(errors)
+        })
 
-                zigZagSort();
-
-                /* 
-                1  2  3  4  5  6  7  8  9  10
-                20 19 18 17 16 15 14 13 12 11
-                21 22 23 24 25 26 27 28 29 30
-                40 39 38 37 36 35 34 33 32 31 
-                */
-                setRooms(zigZagSortedRooms)
-                // exploreRoom(res.data.rooms[0].id, [0, 0], res.data.rooms).then(res => {
-                //     // console.log(grid)
-                //     setFinishedGrid(grid)
-                // })
-            })
-            .catch(err => console.log(err));
     }, [])
     // grid is  an object of the form grid[y] = 'string that is in the row seperated by spaces for columns'
     var grid = [['.']];
@@ -147,16 +144,15 @@ function Rooms() {
             <h1>ROOMS</h1>
             <div className='container'>
                 <div className='game'>
+
                     {rooms.map(room => {
-                        return <div className={`box box-${room.id}`} key={room.id}> {room.id} </div>
+                        return <div className={room.id === moveData.room_id ? `box active box-${room.id}` : `box box-${room.id}`} key={room.id}> {room.id} </div>
                     })}
                 </div>
                 <div className='right-side'>
-                    {/* <div className='description'>Description</div> */}
-                    <Init />
+                    <Init moveData={moveData} />
                     <div className='input'>
-
-                        <Move />
+                        <Move setMoveData={setMoveData} />
                     </div>
                 </div>
             </div>
