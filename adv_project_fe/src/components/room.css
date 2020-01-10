@@ -1,8 +1,13 @@
+*:focus {
+    outline: none;
+  }
 .container{
     border: 1px solid black;
     width: 100%;
     display: flex;
     height: 100vh;
+    justify-content: center;
+    padding: 3% 0;
 }
 .game{
     border: 1px solid green;
@@ -18,9 +23,12 @@
 .box {
     background-color: #444;
     color: #fff;
-    border-radius: 5px;
     padding: 20px;
     font-size: 150%;
+    box-shadow: 1px 1px 12px 3px rgba(1, 0, 0, 0.8);
+    background: url(../SVG/moon-surface.jpg);
+    background-size: cover;
+    margin: 5px;
   }
 .box:nth-child(even) {
     background-color: #ccc;
@@ -44,5 +52,7 @@
     width: 100%;
 }
 .active{
-    background: pink !important;
+    /* background: pink !important; */
+    background: url(../SVG/alien-character.png), url(../SVG/moon-surface.jpg);
+    background-size: cover;
 }
