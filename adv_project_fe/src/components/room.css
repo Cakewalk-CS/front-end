@@ -1,5 +1,5 @@
 body {
-    background: url(../SVG/space.svg);
+    background: url(../SVG/background.svg);
     background-size: contain;
 }
 
@@ -86,12 +86,13 @@ body {
 }
 
 .description{
+    font-family: 'Exo 2', sans-serif;
+    font-weight: regular;
     color: white;
     width: 90%;
     height: 50vh;
     padding: 20px;
-    background: #f26417;
-    border-radius: 5px;
+    background: #f26417;  
 }
 .input{
     width: 100%;
