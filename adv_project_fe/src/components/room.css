@@ -3,6 +3,10 @@ body {
     background-size: contain;
 }
 
+*:focus {
+    outline: none;
+}
+
 .container{
     width: 100%;
     display: flex;

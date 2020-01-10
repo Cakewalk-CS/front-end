@@ -8,7 +8,10 @@ const ParentDiv = styled.div `
 display: flex;
 justify-content: center;
 text-align: center;
+<<<<<<< HEAD
+=======
 height: 100vh;
+>>>>>>> e6fb943ea0b7be392e4a3f7dcd557de37f0801dc
 `
 const LoginFormDiv = styled.div `
 display: flex;
@@ -70,7 +73,10 @@ height:40px;
 const LogoDiv = styled.div `
 background-color: #55dde0;
 width: 50% ;
-flex-grow: 1;
+height: 100vh;
+display:flex;
+flex-direction: column;
+align-items: center;
 `
 const ForgotDiv = styled.span `
 font-style: italic;
@@ -93,17 +99,17 @@ const Login = props => {
             .then(res => {
                 localStorage.setItem("token", res.data.key);
                 if(res.status === 200){
-                    setSuccess(true)
+                  props.history.push('/rooms')
                 }
             })
             .catch(err => console.log(err));
     }
   return (
-  <ParentDiv>
-    <LogoDiv>
-    <img style={{marginTop:"30px", marginRight:"15px"}} src={title} alt="title" />
-    <img style={{width:"90%"}} src={ori} alt="Ori" />
-    </LogoDiv>
+    <ParentDiv>
+      <LogoDiv>
+        <img style={{marginTop:"30px", marginRight:"15px", marginLeft:'15px'}} src={title} alt="title" />
+        <img style={{width:"90%", margin:"auto"}} src={ori} alt="Ori" />
+      </LogoDiv>
     <Modal success={success} setSuccess={setSuccess}/>
         <LoginFormDiv>
         <WBSpan>WELCOME BACK!</WBSpan>
