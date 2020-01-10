@@ -4,14 +4,13 @@ import Modal from './GameStartModal'
 import styled from 'styled-components'
 import ori from "../SVG/ori.svg"
 import title from "../SVG/title.svg"
+
+
 const ParentDiv = styled.div `
 display: flex;
 justify-content: center;
 text-align: center;
-<<<<<<< HEAD
-=======
 height: 100vh;
->>>>>>> e6fb943ea0b7be392e4a3f7dcd557de37f0801dc
 `
 const LoginFormDiv = styled.div `
 display: flex;
@@ -73,7 +72,10 @@ height:40px;
 const LogoDiv = styled.div `
 background-color: #55dde0;
 width: 50% ;
-flex-grow: 1;
+height: 100vh;
+display:flex;
+flex-direction: column;
+align-items: center;
 `
 const ForgotDiv = styled.span `
 font-style: italic;
@@ -104,8 +106,8 @@ const Login = props => {
   return (
   <ParentDiv>
     <LogoDiv>
-    <img style={{marginTop:"30px", marginRight:"15px"}} src={title} alt="title" />
-    <img style={{width:"90%"}} src={ori} alt="Ori" />
+    <img style={{marginTop:"30px", margin:"30px 15px"}} src={title} alt="title" />
+    <img style={{maxWidth:"90%"}} src={ori} alt="Ori" />
     </LogoDiv>
     <Modal success={success} setSuccess={setSuccess}/>
         <LoginFormDiv>

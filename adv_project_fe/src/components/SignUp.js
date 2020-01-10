@@ -41,8 +41,8 @@ const Signup = props => {
   return (
     <ParentDiv>
       <LogoDiv>
-        <img style={{marginTop:"30px", marginRight:"15px"}} src={signuptitle} alt="signuptitle" />
-        <Img style={{maxWidth:"50%"}} src={ori} alt="Ori" />
+        <img style={{marginTop:"30px", margin:"30px 15px"}} src={signuptitle} alt="signuptitle" />
+        <Img style={{maxWidth:"90%"}} src={ori} alt="Ori" />
       </LogoDiv>
       <SignUpDiv>
         <Form onSubmit={e => submitInfo(e, newUser)}>
@@ -116,7 +116,7 @@ margin-top: 200px;
 `
 const SignUpDiv = styled.div`
 display: flex;
-background-color: #f26419;
+background-color: #efb22d;
 
 width: 50% ;
 flex-grow: 1;
@@ -164,7 +164,7 @@ border: none;
 const LButton = styled.button`
 border-radius: 20px;
 border-color: transparent;
-background-color: #efb22d;
+background-color: #f26419;
 cursor: pointer;
 width: 80%
 margin: 0 auto;
