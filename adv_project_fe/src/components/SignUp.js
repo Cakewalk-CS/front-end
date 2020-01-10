@@ -41,8 +41,8 @@ const Signup = props => {
   return (
     <ParentDiv>
       <LogoDiv>
-        <img style={{marginTop:"30px", marginRight:"15px"}} src={signuptitle} alt="signuptitle" />
-        <Img style={{maxWidth:"50%"}} src={ori} alt="Ori" />
+        <img style={{marginTop:"30px", marginRight:"15px", marginLeft:'15px'}} src={signuptitle} alt="signuptitle" />
+        <img style={{width:"90%", margin:"auto"}} src={ori} alt="Ori" />
       </LogoDiv>
       <SignUpDiv>
         <Form onSubmit={e => submitInfo(e, newUser)}>
@@ -98,6 +98,7 @@ export default Signup;
 const ParentDiv = styled.div`
 display: flex;
 text-align: center;
+height: 100vh;
 `
 
 const LogoDiv = styled.div`

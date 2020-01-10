@@ -70,7 +70,10 @@ height:40px;
 const LogoDiv = styled.div `
 background-color: #55dde0;
 width: 50% ;
-flex-grow: 1;
+height: 100vh;
+display:flex;
+flex-direction: column;
+align-items: center;
 `
 const ForgotDiv = styled.span `
 font-style: italic;
@@ -99,11 +102,11 @@ const Login = props => {
             .catch(err => console.log(err));
     }
   return (
-  <ParentDiv>
-    <LogoDiv>
-    <img style={{marginTop:"30px", marginRight:"15px"}} src={title} alt="title" />
-    <img style={{width:"90%"}} src={ori} alt="Ori" />
-    </LogoDiv>
+    <ParentDiv>
+      <LogoDiv>
+        <img style={{marginTop:"30px", marginRight:"15px", marginLeft:'15px'}} src={title} alt="title" />
+        <img style={{width:"90%", margin:"auto"}} src={ori} alt="Ori" />
+      </LogoDiv>
     <Modal success={success} setSuccess={setSuccess}/>
         <LoginFormDiv>
         <WBSpan>WELCOME BACK!</WBSpan>
