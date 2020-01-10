@@ -4,14 +4,13 @@ import Modal from './GameStartModal'
 import styled from 'styled-components'
 import ori from "../SVG/ori.svg"
 import title from "../SVG/title.svg"
+
+
 const ParentDiv = styled.div `
 display: flex;
 justify-content: center;
 text-align: center;
-<<<<<<< HEAD
-=======
 height: 100vh;
->>>>>>> e6fb943ea0b7be392e4a3f7dcd557de37f0801dc
 `
 const LoginFormDiv = styled.div `
 display: flex;
