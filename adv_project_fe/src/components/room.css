@@ -1,5 +1,9 @@
+body {
+    background: url(../SVG/space.svg);
+    background-size: contain;
+}
+
 .container{
-    border: 1px solid black;
     width: 100%;
     display: flex;
     height: 100vh;
@@ -7,8 +11,11 @@
     padding: 3% 0;
 }
 .game{
-    border: 1px solid green;
     width: 600px;
+    border-radius: 5px;
+    border: 2px solid #fff;
+    box-shadow: 0 0 7px 5px #fff;
+    height: fit-content;
     display: grid;
     grid-template-columns: repeat(10, 60px);
     grid-template-rows: repeat(10, 60px);
@@ -21,35 +28,100 @@
     background-color: #444;
     color: #fff;
     padding: 20px;
+    border-radius: 8px;
     font-size: 150%;
-    box-shadow: 1px 1px 12px 3px rgba(1, 0, 0, 0.8);
+    box-shadow: inset 0px 0px 9px 6px rgba(1, 0, 0, 0.8);
     background: url(../SVG/moon-surface.jpg);
     background-size: cover;
-    margin: 5px;
+    margin: 2px;
+    position: relative;
   }
 .box:nth-child(even) {
     background-color: #ccc;
     color: #000;
 }
+.box.box-1:after,
+.box.box-21:after,
+.box.box-41:after,
+.box.box-61:after,
+.box.box-81:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 536px;
+    height: 2px;
+    left: -2px;
+    bottom: -3px;
+    background-color: #fff;
+    box-shadow: 0 0 3px 2px #fff;
+    z-index: 9;
+}
+
+.box.box-11:after,
+.box.box-31:after,
+.box.box-51:after,
+.box.box-71:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 536px;
+    height: 2px;
+    right: -2px;
+    bottom: -3px;
+    background-color: #fff;
+    box-shadow: 0 0 3px 2px #fff;
+    z-index: 9;
+}
+
 .right-side{
-    border: 1px solid skyblue;
     width: 20%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-left: 15px;
 }
 
 .description{
     color: white;
-    width: 100%;
+    width: 90%;
     height: 50vh;
-    background: black;
+    padding: 20px;
+    background: #f26417;
+    border-radius: 5px;
 }
 .input{
     width: 100%;
 }
 .active{
-    /* background: pink !important; */
     background: url(../SVG/alien-character.png), url(../SVG/moon-surface.jpg);
     background-size: cover;
+}
+
+div.input {
+    margin-top: 20px;
+}
+
+div.input button {
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    border: none;
+}
+
+button.north {
+    background: url(../SVG/north.svg);
+}
+
+button.south {
+    background: url(../SVG/south.svg);
+}
+
+button.east {
+    background: url(../SVG/east.svg);
+}
+
+button.west {
+    background: url(../SVG/west.svg);
+    margin-right: 10px;
 }
