@@ -93,7 +93,7 @@ const Login = props => {
             .then(res => {
                 localStorage.setItem("token", res.data.key);
                 if(res.status === 200){
-                    setSuccess(true)
+                  props.history.push('/rooms')
                 }
             })
             .catch(err => console.log(err));
