@@ -98,6 +98,7 @@ export default Signup;
 const ParentDiv = styled.div`
 display: flex;
 text-align: center;
+height: 100vh;
 `
 
 const LogoDiv = styled.div`

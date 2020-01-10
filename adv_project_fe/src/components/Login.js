@@ -104,11 +104,11 @@ const Login = props => {
             .catch(err => console.log(err));
     }
   return (
-  <ParentDiv>
-    <LogoDiv>
-    <img style={{marginTop:"30px", margin:"30px 15px"}} src={title} alt="title" />
-    <img style={{maxWidth:"90%"}} src={ori} alt="Ori" />
-    </LogoDiv>
+    <ParentDiv>
+      <LogoDiv>
+        <img style={{marginTop:"30px", marginRight:"15px", marginLeft:'15px'}} src={title} alt="title" />
+        <img style={{width:"90%", margin:"auto"}} src={ori} alt="Ori" />
+      </LogoDiv>
     <Modal success={success} setSuccess={setSuccess}/>
         <LoginFormDiv>
         <WBSpan>WELCOME BACK!</WBSpan>
