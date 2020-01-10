@@ -57,3 +57,7 @@
   "description": "North of you, the cave mount beckons", 
   "players": []}
   ```
+### Map Connection Layout
+https://docs.google.com/document/d/1Hqwedvb_ds4pR8PpJoIe_WJLoyI-W5_kQh56lH-UyNA/edit
+### Netlify Game Ori's Galaxy Quest
+https://cocky-davinci-344c63.netlify.com/

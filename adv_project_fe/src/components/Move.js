@@ -46,10 +46,10 @@ const Move = (props) => {
 
     return (
         <div>
-            <button value="n" onClick={handleSubmit}>&#8679;</button>
-            <button value="s" onClick={handleSubmit}>&#8681;</button>
-            <button value="w" onClick={handleSubmit}>&#8678;</button>
-            <button value="e" onClick={handleSubmit}>&#8680;</button>
+            <button value="w" onClick={handleSubmit} className="west"></button>
+            <button value="e" onClick={handleSubmit} className="east"></button>
+            <button value="n" onClick={handleSubmit} className="north"></button>
+            <button value="s" onClick={handleSubmit} className="south"></button>
         </div >
     );
 }
